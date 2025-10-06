@@ -35,19 +35,19 @@ const products = [
     {
         id: 6,
         name: "Poltrona Aculchoada e descanso para pés",
-        price: 599.99,
+        price: 799.99,
         image: "image/poltrona acuchoada.avif"
     },
     {
         id: 7,
         name: "Poltrona Modular Cinza Claro ",
-        price: 299.99,
+        price: 699.99,
         image: "image/poltrona modular.avif"
     },
     {
         id: 8,
         name: "Poltrona Terracota Elegante",
-        price: 699.99,
+        price: 1299.99,
         image: "image/poltrona terracota.avif"
     },
     {
