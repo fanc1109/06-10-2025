@@ -126,7 +126,7 @@ label {
 }
    
 
-input[type="email"], input[type="text"], input[type="tel"] {
+input[type="email"], input[type="text"], input[type="tel"], input[type="number"],input[type="logradouro"],input[type="bairro"],input[type="cidade"],input[type="estado"] {
     width: 100%;
     padding: 10px;
     border-radius: 6px;
@@ -140,13 +140,18 @@ input[type="email"], input[type="text"], input[type="tel"] {
     margin-bottom: 0rem;
     font-size: 3rem;
     color: #7B4B3A;
-    font-family:'Times New Roman', Times, serif
+    font-family:'Times New Roman', Times, serif;
 }
 button{
+    width: 20%;
     text-align: center;
-    font-weight:bold;
     margin-bottom: 15px;
-    color: #7B4B3A;
+    outline: none;
+    border-radius: 6px;
+    border: none;
+    font-size: 20px;
+    color: #8f4a31;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
  /* Carrinho lateral */

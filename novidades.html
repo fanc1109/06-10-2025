@@ -55,8 +55,71 @@
     <input type="email" id="email" placeholder="Seu e-mail aqui" required><br>
     <label>Telefone</label>
     <input type="tel" id="telefone" placeholder="Seu telefone aqui" required><br>
+    <label>CEP</label>
+    <input type="number" id="cep" placeholder="Seu CEP aqui" required><br>
+    <label for="logradouro">Logradouro</label>
+    <input type="text" id="logradouro" name="logradouro" placeholder="Seu logradouro aqui"> <br>
+    <label for="bairro">Bairro</label>
+    <input type="text" id="bairro" name="bairro"  placeholder="Seu bairro aqui"><br>
+    <label for="cidade">Cidade</label>
+    <input type="text" id="cidade" name="cidade"  placeholder="Sua cidade aqui"> <br>
+    <label for="estado">Estado</label>
+    <input type="text" id="estado" name="estado"  placeholder="Seu estado aqui">
+    <label for="contato">Contato</label>
+    <input type="number" id="contato" name="contato"  placeholder="Seu contato aqui">
     <button>Cadastrar</button>
+    <button type="submit" id="confirmarbotao" class="btn-cadastro">Voltar</button>
  </form>
+ <script>
+    // 1. Selecionar o elemento pelo ID
+   var campoCep = document.getElementById('cep');
+   // 2. Adicionar o event listener para o evento 'blur'(executado quando é retirado o mouse)
+   campoCep.addEventListener('blur', function() {
+       let valorCep  = campoCep.value; // pegar o valor do campoCep
+       fetch("https://viacep.com.br/ws/"+valorCep+"/json/")
+           .then(response => response.json())
+           .then(data => {
+               console.log(data);
+               document.getElementById('logradouro').value =  data.logradouro || '';
+               document.getElementById('bairro').value =  data.bairro || '' ;
+               document.getElementById('cidade').value =  data.localidade || ''; 
+               document.getElementById('estado').value =  data.estado || '';
+               mudaBorda(0)
+           })
+           .catch(error => mudaBorda(1));
+       });
+       function mudaBorda(cor){
+           if(cor == 1){
+               campoCep.style.border = "1px solid red";
+           }else{
+               campoCep.style.border = "1px solid green";
+           }
+       }
+
+       document.addEventListener('keydown', function(event) {
+        if(event.key == 'Enter'){
+            fetch("https://viacep.com.br/ws/"+valorCep+"/json/")
+           .then(response => response.json())
+           .then(data => {
+               console.log(data);
+               document.getElementById('logradouro').value =  data.logradouro || '';
+               document.getElementById('bairro').value =  data.bairro || '' ;
+               document.getElementById('cidade').value =  data.localidade || ''; 
+               document.getElementById('estado').value =  data.estado || '';
+               mudaBorda(0)
+           })
+           .catch(error => mudaBorda(1));
+        }
+  // event.key retorna o nome da tecla (ex: "a", "Enter", "Escape")
+  console.log(`Tecla pressionada: ${event.key}`);
+});
+// Redirecionar ao clicar no botão Confirmar
+document.getElementById('confirmarbotao').addEventListener('click', function(event) {
+    event.preventDefault(); // impede o envio do formulário
+    alert("Cadastro realizado com sucesso!"); // opcional
+    window.location.href = "index.html"; // redireciona para a página inicial
+});
+</script>
  </section>
  <!--<section id="fidelidade" class="products">
     <h2 class="section-title">Programa de Fidelidade</h2>
