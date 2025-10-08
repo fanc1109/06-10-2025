@@ -233,3 +233,52 @@ overlay.addEventListener('click', () => {
     cartSidebar.classList.remove('active');
     overlay.classList.remove('active');
 });
+
+ // 1. Selecionar o elemento pelo ID
+ var campoCep = document.getElementById('cep');
+ // 2. Adicionar o event listener para o evento 'blur'(executado quando é retirado o mouse)
+ campoCep.addEventListener('blur', function() {
+     let valorCep  = campoCep.value; // pegar o valor do campoCep
+     fetch("https://viacep.com.br/ws/"+valorCep+"/json/")
+         .then(response => response.json())
+         .then(data => {
+             console.log(data);
+             document.getElementById('logradouro').value =  data.logradouro || '';
+             document.getElementById('bairro').value =  data.bairro || '' ;
+             document.getElementById('cidade').value =  data.localidade || ''; 
+             document.getElementById('estado').value =  data.estado || '';
+             mudaBorda(0)
+         })
+         .catch(error => mudaBorda(1));
+     });
+     function mudaBorda(cor){
+         if(cor == 1){
+             campoCep.style.border = "1px solid red";
+         }else{
+             campoCep.style.border = "1px solid green";
+         }
+     }
+
+     document.addEventListener('keydown', function(event) {
+      if(event.key == 'Enter'){
+          fetch("https://viacep.com.br/ws/"+valorCep+"/json/")
+         .then(response => response.json())
+         .then(data => {
+             console.log(data);
+             document.getElementById('logradouro').value =  data.logradouro || '';
+             document.getElementById('bairro').value =  data.bairro || '' ;
+             document.getElementById('cidade').value =  data.localidade || ''; 
+             document.getElementById('estado').value =  data.estado || '';
+             mudaBorda(0)
+         })
+         .catch(error => mudaBorda(1));
+      }
+// event.key retorna o nome da tecla (ex: "a", "Enter", "Escape")
+console.log(`Tecla pressionada: ${event.key}`);
+});
+// Redirecionar ao clicar no botão Confirmar
+document.getElementById('confirmarbotao').addEventListener('click', function(event) {
+  event.preventDefault(); // impede o envio do formulário
+  
+  window.location.href = "index.html"; // redireciona para a página inicial
+});

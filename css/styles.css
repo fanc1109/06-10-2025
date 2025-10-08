@@ -24,7 +24,7 @@
         }
         table{
             margin:0 auto;
-            width: 50%;
+            width: 80%;
             border-collapse:collapse;
         }
         tr,td,th{
@@ -33,7 +33,7 @@
         padding: 8px;
         }
         tr:nth-child(even){
-            background-color:#EADDC8 ;
+            background-color:#e9e3da ;
         }
 
         .header-container {
